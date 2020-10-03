@@ -20,7 +20,7 @@ end
 
 Using the module will define three functions, `with_record/2`, `from_record/1`, and `to_record/1`.
 
-`with_record/2` takes a struct as argument, and a function that takes a record as argument. It will convert the struct to a record, pass it to the function, and then convert the result of the function back to a record.
+`with_record/2` takes a struct as argument, and a function that takes a record as argument. It will convert the struct to a record, pass it to the function, and then convert the result of the function back to a struct.
 
 `from_record/1` takes a record as argument, and returns a struct.
 
