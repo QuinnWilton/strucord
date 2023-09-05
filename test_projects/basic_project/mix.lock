@@ -1,4 +1,4 @@
 %{
   "mix_gleam": {:hex, :mix_gleam, "0.6.1", "d701fb4f9d97c786c09910f71a5441a11ef435fc09eeed67e60e90c2c92f21cf", [:mix], [], "hexpm", "3db42d762fa9bbff1cb69f57ba3f2063130742b6b5a7ab06759cc45f2c8f74ab"},
-  "strucord": {:git, "https://github.com/srikanthkyatham/strucord", "2e2ad45b28bc034e242be3e3bc2cbdddbd2bd086", []},
+  "strucord": {:git, "https://github.com/srikanthkyatham/strucord", "9bc54b3d684b2778c5a888d98029f3bc4c0352d1", []},
 }
