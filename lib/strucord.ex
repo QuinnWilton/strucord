@@ -37,12 +37,12 @@ defmodule Strucord do
       defp nested_from_records(init_attrs, overrides) do
         override_keys = Keyword.keys(overrides)
 
-        Enum.reduce(override_keys, init_attrs, fn override_key, attrs ->
+        Enum.reduce(override_keys, init_attrs, fn override_key, attrs_acc ->
           override = Keyword.get(overrides, override_key)
 
-          value = do_nested_from_records(attrs, override, override_key)
+          value = do_nested_from_records(attrs_acc, override, override_key)
 
-          Map.put(attrs, override_key, value)
+          Map.put(attrs_acc, override_key, value)
         end)
       end
 
@@ -70,9 +70,9 @@ defmodule Strucord do
       defp nested_to_records(init_record, record_keys, struct, overrides) do
         override_keys = Keyword.keys(overrides)
 
-        Enum.reduce(override_keys, init_record, fn override_key, record ->
+        Enum.reduce(override_keys, init_record, fn override_key, record_acc ->
           override = Keyword.get(overrides, override_key)
-          # index of override_key in record tuple
+          # index of override_key in record_acc tuple
           override_key =
             case is_atom(override_key) do
               true -> override_key
@@ -86,13 +86,13 @@ defmodule Strucord do
 
           case index do
             nil ->
-              record
+              record_acc
 
             index ->
               # 0 th position is for the record name, fields start at position 1
               index = index + 1
               value = do_nested_to_records(struct, override, override_key)
-              Kernel.put_elem(record, index, value)
+              Kernel.put_elem(record_acc, index, value)
           end
         end)
       end
