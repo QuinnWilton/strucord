@@ -9,7 +9,7 @@ defmodule Strucord do
     struct_fields = Keyword.keys(fields)
     vars = Macro.generate_arguments(length(struct_fields), __MODULE__)
     kvs = Enum.zip(struct_fields, vars)
-    overrides = Keyword.fetch!(opts, :overrides)
+    overrides = Keyword.get(opts, :overrides, [])
 
     quote do
       defstruct unquote(struct_fields)
