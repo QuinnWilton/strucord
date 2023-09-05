@@ -51,9 +51,15 @@ defmodule Strucord do
           {:list, child_struct} ->
             record_values = Map.get(attrs, override_key)
 
-            Enum.map(record_values, fn record_value ->
-              child_struct.from_record(record_value)
-            end)
+            case record_values do
+              nil ->
+                nil
+
+              record_values ->
+                Enum.map(record_values, fn record_value ->
+                  child_struct.from_record(record_value)
+                end)
+            end
 
           child_struct ->
             record_value = Map.get(attrs, override_key)
