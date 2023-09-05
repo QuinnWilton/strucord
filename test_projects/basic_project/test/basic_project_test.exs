@@ -7,7 +7,11 @@ defmodule BasicProjectTest do
     actual_record = Engine.to_record(expected_struct)
 
     expected_record =
-      {:engine, [{:card, "QH", "image/path", "Queen Of Hearts", nil}], ["card1"], 0}
+      {:engine,
+       [
+         {:card, "QH", "image/path", "Queen Of Hearts",
+          [{:meta, "meta1", "blue", [%Tag{id: "tag1"}]}]}
+       ], ["card1"], 0}
 
     assert actual_record == expected_record
 
@@ -19,7 +23,8 @@ defmodule BasicProjectTest do
     %Card{
       id: "QH",
       image: "image/path",
-      name: "Queen Of Hearts"
+      name: "Queen Of Hearts",
+      metas: [%Meta{id: "meta1", color: "blue", types: [%Tag{id: "tag1"}]}]
     }
   end
 
