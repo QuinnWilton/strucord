@@ -34,10 +34,10 @@ defmodule Strucord do
         |> from_record()
       end
 
-      defp nested_from_records(attrs, overrides) do
+      defp nested_from_records(init_attrs, overrides) do
         override_keys = Keyword.keys(overrides)
 
-        Enum.reduce(override_keys, attrs, fn override_key, acc ->
+        Enum.reduce(override_keys, init_attrs, fn override_key, attrs ->
           override = Keyword.get(overrides, override_key)
 
           value = do_nested_from_records(attrs, override, override_key)
@@ -67,10 +67,10 @@ defmodule Strucord do
         end
       end
 
-      defp nested_to_records(record, record_keys, struct, overrides) do
+      defp nested_to_records(init_record, record_keys, struct, overrides) do
         override_keys = Keyword.keys(overrides)
 
-        Enum.reduce(override_keys, record, fn override_key, acc ->
+        Enum.reduce(override_keys, init_record, fn override_key, record ->
           override = Keyword.get(overrides, override_key)
           # index of override_key in record tuple
           override_key =
