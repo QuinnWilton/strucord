@@ -26,7 +26,7 @@ Using the module will define three functions, `with_record/2`, `from_record/1`, 
 
 `to_record/1` takes a struct as argument, and returns a record.
 
-`overrides` takes keyword list of options. For example: it could of array of nested structs or just a nested struct
+`overrides` it is an optional argument takes keyword list of options. For example: it could of array of nested structs or just a nested struct
 - tags: {:list, Tag}
 - tag: Tag
 

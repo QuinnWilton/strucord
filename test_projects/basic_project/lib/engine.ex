@@ -3,6 +3,7 @@ defmodule Engine do
     name: :engine,
     from: "build/dev/erlang/basic_project/include/engine_Engine.hrl",
     overrides: [
-      cards: {:list, Card}
+      cards: {:list, Card},
+      meta: Meta
     ]
 end

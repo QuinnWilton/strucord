@@ -11,7 +11,7 @@ defmodule BasicProjectTest do
        [
          {:card, "QH", "image/path", "Queen Of Hearts",
           [{:meta, "meta1", "blue", [%Tag{id: "tag1"}]}]}
-       ], ["card1"], 0}
+       ], ["card1"], 0, {:meta, "meta1", "blue", [%Tag{id: "tag1"}]}}
 
     assert actual_record == expected_record
 
@@ -19,22 +19,30 @@ defmodule BasicProjectTest do
     assert actual_struct == expected_struct
   end
 
+  def get_meta do
+    %Meta{id: "meta1", color: "blue", types: [%Tag{id: "tag1"}]}
+  end
+
   def get_card do
+    meta = get_meta()
+
     %Card{
       id: "QH",
       image: "image/path",
       name: "Queen Of Hearts",
-      metas: [%Meta{id: "meta1", color: "blue", types: [%Tag{id: "tag1"}]}]
+      metas: [meta]
     }
   end
 
   def get_engine do
     card = get_card()
+    meta = get_meta()
 
     %Engine{
       cards: [card],
       playing_cards: ["card1"],
-      score: 0
+      score: 0,
+      meta: meta
     }
   end
 end

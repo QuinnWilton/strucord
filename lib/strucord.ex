@@ -34,7 +34,7 @@ defmodule Strucord do
         |> from_record()
       end
 
-      defp nested_from_records(init_attrs, overrides) do
+      defp nested_from_records(init_attrs, overrides) when is_map(init_attrs) do
         override_keys = Keyword.keys(overrides)
 
         Enum.reduce(override_keys, init_attrs, fn override_key, attrs_acc ->
@@ -62,8 +62,10 @@ defmodule Strucord do
             end
 
           child_struct ->
-            record_value = Map.get(attrs, override_key)
-            child_struct.from_record(record_value)
+            case Map.get(attrs, override_key) do
+              nil -> nil
+              record_value -> child_struct.from_record(record_value)
+            end
         end
       end
 
@@ -97,14 +99,16 @@ defmodule Strucord do
         end)
       end
 
-      defp do_nested_to_records(struct, override, override_key) do
+      defp do_nested_to_records(struct, override, override_key) when is_struct(struct) do
         case override do
           {:list, child_struct} ->
             handle_nested_list_records(struct, override_key, child_struct)
 
           child_struct ->
-            value = Map.get(struct, override_key)
-            child_struct.to_record(value)
+            case Map.get(struct, override_key) do
+              nil -> nil
+              value -> child_struct.to_record(value)
+            end
         end
       end
 
