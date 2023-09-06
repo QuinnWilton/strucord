@@ -25,7 +25,7 @@ defmodule BasicProject.MixProject do
   defp deps do
     [
       {:mix_gleam, "~> 0.6"},
-      {:strucord, git: "https://github.com/srikanthkyatham/strucord"}
+      {:strucord, path: Path.expand("../..", __DIR__)}
     ]
   end
 
