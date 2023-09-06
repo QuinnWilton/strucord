@@ -2,7 +2,7 @@ defmodule BasicProjectTest do
   use ExUnit.Case
   doctest BasicProject
 
-  test "greets the world" do
+  test "to_record <-> from_record" do
     expected_struct = get_engine()
     actual_record = Engine.to_record(expected_struct)
 
