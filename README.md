@@ -26,11 +26,16 @@ Using the module will define three functions, `with_record/2`, `from_record/1`, 
 
 `to_record/1` takes a struct as argument, and returns a record.
 
+`overrides` it is an optional argument takes keyword list of options. For example: it could of array of nested structs or just a nested struct
+- tags: {:list, Tag}
+- tag: Tag
+
 ```elixir
 defmodule Emulator do
   use Strucord,
     name: :emulator,
-    from: "gen/src/chip8@emulator_Emulator.hrl"
+    from: "gen/src/chip8@emulator_Emulator.hrl",
+    overrides: []
 
   def init() do
     from_record(:chip8@emulator.init())
